@@ -1,0 +1,48 @@
+import java.util.Scanner;
+class Dice {
+	public static int rollDice() {
+		int[] dice = { 1, 2, 3, 4, 5, 6 };
+		int charA = dice[(int) Math.floor(Math.random() * dice.length)];
+		int charB = dice[(int) Math.floor(Math.random() * dice.length)];
+
+		int total = charA + charB;
+
+		System.out.println("You have rolled " + charA + " and " + charB + " for a total of " + total);
+		if (total > 5) {
+			System.out.println("Well done, you rolled high");
+		} else {
+			System.out.println("Unlucky, low roll!");
+		}
+		
+		return total;
+	}
+}
+public class Application {
+
+	public static void main(String[] args) {
+		// int[] dice = {1, 2, 3, 4 , 5, 6};
+
+		// int charA = dice[(int) Math.floor(Math.random() * dice.length)];
+		// int charB = dice[(int) Math.floor(Math.random() * dice.length)];
+		Scanner scn = new Scanner(System.in);
+		int placeOnBoard = 0;
+		String input;
+		for(int i =0; i<24; i++) {
+			System.out.println("Say 'Roll' to roll, 'return' to go back a space");
+			input = scn.nextLine();
+			if(input.contentEquals("Roll"))  {
+				i = i + (Dice.rollDice());
+				System.out.println("Your place on board is now " + i);
+			}else if(input.contentEquals("return")) {
+				if(i<2) {
+					System.out.println("Invalid command, you are too early in game");
+				}else
+					i=--i;
+				System.out.println("Your place on board is now " + i);
+			}
+		}
+	
+
+	}
+
+}
